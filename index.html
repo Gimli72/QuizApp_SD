@@ -12,8 +12,9 @@
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
 
     <!-- Include the CSS files -->
-    <link rel='stylesheet' href='./css/style.css'>
     <link rel="stylesheet" href="./css/fonts.css" />
+    <link rel='stylesheet' href='./css/style.css'>
+    <link rel='stylesheet' href='./css/media.css'>
 
     <!-- Include the JavaScript files -->
     <script src='./script/script.js'></script>
@@ -32,23 +33,32 @@
     <div class="progress" role="progressbar">
         <div class="progress-bar" id="progress-bar" style="width: 0%">25%</div>
     </div>
-    <main class="d-flex align-items-center justify-content-center vw-100 vh-100">
-        <article class="d-flex flex-lg-row flex-column">
-            <nav class="rounded-start-4 h-0">
-                <div class="text-center mt-4 d-sm-block d-none">
+    <main class="d-flex align-items-center justify-content-center vw-100 vh-100 ">
+        <article class="d-flex flex-md-row flex-column">
+            <nav class="h-0">
+                <div class="text-center mt-4 d-sm-block mb-sm-4 d-none">
                     <img src="./img/logo.png" alt="">
                 </div>
-                <div class="navigation mt-5 d-flex flex-sm-column me-3">
-                    <div role ="button" class="menu_point mb-sm-4 ps-sm-5 menu_html active" onclick="selectMenuPoint('html')">HTML</div>
-                    <div role ="button" class="menu_point mb-sm-4 ps-sm-5 menu_css" onclick="selectMenuPoint('css')">CSS</div>
-                    <div role ="button" class="menu_point mb-sm-4 ps-sm-5 menu_js" onclick="selectMenuPoint('js')">JS</div>
-                    <div role ="button" class="menu_point mb-sm-4 ps-sm-5 menu_java" onclick="selectMenuPoint('java')">JAVA</div>
+                <div class="navigation mt-2 mb-2 mt-md-5 d-flex flex-md-column justify-content-evenly">
+                    <div role="button" class="menu_point mb-md-4 ps-2 ps-md-5 menu_html w-100 active"
+                        onclick="selectMenuPoint('html')">HTML</div>
+                    <div role="button" class="menu_point mb-md-4 ps-2 ps-md-5 menu_css w-100"
+                        onclick="selectMenuPoint('css')">CSS</div>
+                    <div role="button" class="menu_point mb-md-4 ps-2 ps-md-5 menu_js w-100" onclick="selectMenuPoint('js')">
+                        JS</div>
+                    <div role="button" class="menu_point mb-md-4 ps-2 ps-md-5 menu_java w-100"
+                        onclick="selectMenuPoint('java')">JAVA</div>
                 </div>
             </nav>
-            <section id="sectionId" class="position-relative h-100 w-100 rounded-end-4 d-flex flex-column align-items-center justify-content-center">
+            <section id="sectionId"
+                class="position-relative w-100 rounded-end-4 d-flex flex-column align-items-center justify-content-center">
+
+
             </section>
         </article>
     </main>
+
+
 </body>
 
 </html>

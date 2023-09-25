@@ -49,7 +49,7 @@ const cardTemplate = () => /*html*/ `
         </div>
         <div class="navigation-footer d-flex flex-row justify-content-between">
             <div><button class="btn navigation-left bg-transparent border-0 position-absolute" id="prev-button" disabled onclick="prevQuestion()">
-                <img class="start-0" src="./img/left-25.png" alt=""></button></div>
+                <img src="./img/left-25.png" alt=""></button></div>
             <div><button class="btn navigation-right bg-transparent border-0 position-absolute" id="next-button" disabled
                     onclick="nextQuestion()"><img src="./img/right-25.png" alt=""></button></div>
         </div>
@@ -67,5 +67,5 @@ const endScreenTemplate = () => /*html*/ `
         <div><span class="text-warning font-weight-700">YOUR SCORE</span>&nbsp; &nbsp;<span id="rightQuestions">10</span>/<span id="totalQuestions">10</span></div>
         <button class="btn btn-primary" onclick="restartQuizApp()">SPIEL NEU STARTEN</button>
     </div>
-    <img src="./img/tropy.png" class="position-fixed end-0" alt="">
+    <img src="./img/tropy.png" class="position-fixed end-0 d-sm-block d-none" alt="">
 `;

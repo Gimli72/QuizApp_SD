@@ -1,0 +1,75 @@
+@media (max-width: 576px) {
+
+    article {
+        height: 80%;
+    }
+
+    nav {
+        width: auto;
+        border-radius: 0;
+
+    }
+
+    .navigation {
+        font-size: large;
+        width: 100vw;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+
+    .navigation>div {
+        border-left: 7px solid var(--bg-color-nav);
+    }
+
+    .navigation>div:hover {
+        border-left: 7px solid var(--bg-color-nav);
+    }
+
+    .welcome_text {
+        font-size: 26px;
+    }
+
+    .welcome_text_subtitel {
+        font-size: 22px;
+    }
+
+    .card-body {
+        font-size: 16px;
+    }
+
+    .card-title {
+
+        font-size: 20px;
+        margin: 30px auto 20px auto;
+    }
+
+    .question-footer {
+        padding-top: 8px;
+        font-family: 'RUBIK', sans-serif;
+        font-size: 16px;
+    }
+
+    section {
+        height: 500px;
+    }
+
+    .navigation-right img {
+        right: 40px;
+    }
+
+    .navigation-left img {
+        left: 15px;
+    }
+}
+
+@media (max-width: 776px) {
+    nav {
+        width: auto;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+
+    nav>img {
+        margin-bottom: 20px;
+    }
+}

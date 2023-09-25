@@ -66,6 +66,8 @@ article {
 nav {
     width: 250px;
     background-color: var(--bg-color-nav);
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
 }
 
 .navigation {
@@ -174,21 +176,14 @@ section {
     right: 20px;
 }
 
+.navigation-left img {
+    left: 0;
+}
+
 /* Quiz complete */
 
 .finale {
     font-family: 'RUBIK', sans-serif;
     font-size: 24px;
     font-weight: bold;
-}
-
-@media (max-width: 576px) {
-
-    article {
-        height: 80%;
-    }
-
-    nav {
-        border: 0;
-    }
 }
