@@ -29,8 +29,8 @@ let currentLanguage = 'html';
 
 let rightQuestions = 0;
 let currentQuestion = 0;
-let AUDIO_SUCCESS = new Audio('audio/right.mp3');
-let AUDIO_FAIL = new Audio('audio/wrong.mp3');
+let AUDIO_SUCCESS = new Audio('audio/right.mov');
+let AUDIO_FAIL = new Audio('audio/wrong.mov');
 
 /**
  * Layout start screen
