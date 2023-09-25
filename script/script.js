@@ -63,7 +63,6 @@ function startQuiz() {
     const currentSection = getElementById('sectionId');
     currentSection.innerHTML = cardTemplate();
     showQuestion();
-    // currentQuestionsLength();
     getElementById('all-Questions').innerHTML = currentQuestionsLength();
 }
 
@@ -73,7 +72,6 @@ function startQuiz() {
  */
 function currentQuestionsLength() {
     const currentQuestionsLength = questions.filter(question => question.language === currentLanguage);
-    // console.log(currentQuestionsLength.length);
     return currentQuestionsLength.length;
 }
 
@@ -120,7 +118,6 @@ function updateToNextQuestion() {
 function updateProgressBar() {
     let percent = (currentQuestion + 1) / currentQuestionsLength();
     percent = Math.round(percent * 100);
-    console.log(percent,"%");
     getElementById('progress-bar').innerHTML = `${percent}%`;
     getElementById('progress-bar').style = `width: ${percent}%`;
 }
@@ -152,9 +149,7 @@ function showBackgroundImage() {
 function answer(selection) {
     const currentQuestions = questions.filter(question => question.language === currentLanguage);
     let question = currentQuestions[currentQuestion];
-    console.log("Richtige Antwort", question.right_answer);
     let selectedQuestionNumber = selection.slice(-1);
-    console.log("Antwort: ", selectedQuestionNumber);
     disabledAnswerTrue(selectedQuestionNumber);
     let idOfRightAnswer = `answer_${question['right_answer']}`;
     if (+selectedQuestionNumber === question.right_answer) {
@@ -212,7 +207,7 @@ function wrongAnswer(selection, idOfRightAnswer) {
     const currentSelection = getElementById(selection).parentNode;
     const currentLetter = currentSelection ? currentSelection.firstElementChild : '';
     currentLetter ? currentLetter.classList.add('bg-wrong-letter') : '';
-    // rightAnswer(idOfRightAnswer);
+    // rightAnswer(idOfRightAnswer); // Correct answer displayed
     AUDIO_FAIL.play();
 }
 

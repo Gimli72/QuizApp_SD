@@ -37,6 +37,11 @@ body {
     background-color: var(--button-color-hover);
 }
 
+.progress {
+    /* position: absolute;
+    width: 100%; */
+}
+
 .bg-success-card {
     background-color: var(--card-bg-right);
 }
@@ -55,33 +60,57 @@ body {
     background-color: var(--card-bg-letter-wrong) !important;
 }
 
+main {
+    /* display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh; */
+}
 
 article {
+    /* display: flex;
+    flex-direction: row; */
     width: clamp(280px, 100%, 900px);
+    /* width: 70%; */
+    /* max-width: 1280px; */
     height: 60%;
 }
 
 /* Navigation */
 
 nav {
+    /* height: 100%; */
     width: 250px;
     background-color: var(--bg-color-nav);
+    /* border-top-left-radius: 20px; */
+    /* border-bottom-left-radius: 20px; */
 }
+
+/* .logo {
+    text-align: center;
+    margin-top: 20px;
+} */
 
 .navigation {
     font-family: 'Rubik', sans-serif;
     font-size: x-large;
     font-weight: normal;
+    /* margin-top: 70px; */
     color: var(--text-color-nav);
 }
 
 .navigation>div {
+    /* margin-bottom: 20px; */
     border-left: 7px solid var(--bg-color-nav);
+    /* padding-left: 45px; */
+    /* width: 100%; */
 }
 
 .navigation>div:hover {
     border-left: 7px solid var(--text-color-nav-hover);
     color: var(--text-color-nav-hover);
+    /* cursor: pointer; */
 }
 
 .active {
@@ -92,13 +121,26 @@ nav {
 /* Section */
 
 section {
+    /* position: relative; */
+    /* height: 100%; */
+    /* width: 100%; */
     background-color: var(--bg-color-section);
+    /* border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px; */
     background-image: url(/img/brainbgsmall.png);
     background-repeat: no-repeat;
     background-position: center center;
+    /* display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; */
+    /* background-color: blueviolet; */
 }
 
 .welcome_text {
+    /* display: flex;
+    flex-direction: column;
+    align-items: center; */
     font-family: 'PT Sans', sans-serif;
     font-weight: bold;
     font-size: 36px;
@@ -110,16 +152,32 @@ section {
     font-size: 32px;
 }
 
+section>button {
+    /* position: absolute; */
+    /* bottom: 30px; */
+    /* right: 30px; */
+}
+
 /* Question */
 
 .card-body {
+    /* width: 100%;
+    height: 100%; */
+    /* display: flex;
+    flex-direction: column; */
+    /* align-items: center; */
+    /* position: relative; */
     font-size: 22px;
+
 }
 
 .card-title {
+    /* margin-top: 60px;
+    margin-bottom: 20px; */
     font-family: 'RUBIK', sans-serif;
     font-weight: bold;
     font-size: 24px;
+    /* width: 75%; */
     margin: 60px auto 30px auto;
 }
 
@@ -137,18 +195,29 @@ section {
 }
 
 .card-letter {
+    /* margin-left: 10px; */
     padding: 10px 20px;
     background-color: var(--card-bg-letter);
 }
 
 .quiz-answer-card:hover {
     cursor: pointer;
+    /* background-color: rgba(0, 0, 0, 0.05); */
 }
 
 .question-footer {
+    /* display: flex;
+    justify-content: space-between;
+    align-items: center; */
     padding-top: 12px;
     font-family: 'RUBIK', sans-serif;
     font-size: 20px;
+}
+
+.navigation-footer {
+    /* display: flex;
+    flex-direction: row;
+    justify-content: space-between; */
 }
 
 .navigation-footer img {
@@ -159,16 +228,25 @@ section {
 }
 
 .navigation-footer img:hover {
+    /* cursor: pointer; */
     opacity: 0.8;
 }
 
 .navigation-footer button {
+    /* background-color: transparent; */
+    /* border: 0;
+    position: absolute; */
     bottom: -12px;
 }
 
 .navigation-footer button:hover {
+    /* cursor: pointer; */
     opacity: 0.6;
 }
+
+/* .navigation-left img {
+    left: 0;
+} */
 
 .navigation-right img {
     right: 20px;
@@ -177,18 +255,28 @@ section {
 /* Quiz complete */
 
 .finale {
+    /* display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    height: 100%; */
     font-family: 'RUBIK', sans-serif;
     font-size: 24px;
     font-weight: bold;
 }
 
-@media (max-width: 576px) {
+/* @media (max-width: 576px) {
 
     article {
-        height: 80%;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
     }
 
     nav {
-        border: 0;
+        width: 100%;
+        height: 20%;
     }
-}
+} */
