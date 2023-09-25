@@ -8,7 +8,7 @@
 const welcomeTemplate = () => /*html*/ `
     <div class="welcome_text d-flex align-items-center flex-column">
         <span>Willkommen bei</span>
-        <span>dem genialen <span id="welcomeTextLanguage">HTML</span> Quiz-App</span>
+        <span>der genialen <span id="welcomeTextLanguage">HTML</span> Quiz-App</span>
     </div>
     <div class="welcome_text_subtitel">
         <span>Wähle deine Rubrik</span>
