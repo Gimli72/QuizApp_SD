@@ -3,6 +3,7 @@
 
 /** @typedef {'html' | 'css' | 'js' | 'java'} Language */
 
+
 /**
  * @type {Record<Language, string>}
  */
@@ -13,7 +14,9 @@ const languages = {
     java: 'JAVA',
 };
 
+
 let currentLanguage = 'html';
+
 
 /**
  * @typedef {Object} Questions
@@ -32,6 +35,7 @@ let currentQuestion = 0;
 let AUDIO_SUCCESS = new Audio('audio/right.mov');
 let AUDIO_FAIL = new Audio('audio/wrong.mov');
 
+
 /**
  * Layout start screen
  */
@@ -40,6 +44,7 @@ function welcome() {
     currentSection.innerHTML = welcomeTemplate();
     selectMenuPoint('html');
 }
+
 
 /**
  * 
@@ -56,6 +61,7 @@ function selectMenuPoint(language) {
     currentLanguage = language;
 }
 
+
 /**
  * Starts the quiz with the selected programming language
  */
@@ -63,8 +69,9 @@ function startQuiz() {
     const currentSection = getElementById('sectionId');
     currentSection.innerHTML = cardTemplate();
     showQuestion();
-    getElementById('all-Questions').innerHTML = currentQuestionsLength();
+    getElementById('all-Questions').innerHTML = currentQuestionsLength().toString();
 }
+
 
 /**
  * Number of total questions of the current programming language
@@ -90,6 +97,7 @@ function showQuestion() {
     }
 }
 
+
 /**
  * Check if quiz is over
  * @returns {boolean}
@@ -98,19 +106,21 @@ function gameIsOver() {
     return currentQuestion >= currentQuestionsLength();
 }
 
+
 /**
  * Update new question on screen
  */
 function updateToNextQuestion() {
     const currentQuestions = questions.filter(question => question.language === currentLanguage);
     let question = currentQuestions[currentQuestion];
-    getElementById('question-number').innerHTML = currentQuestion + 1;
+    getElementById('question-number').innerHTML = (currentQuestion + 1).toString();
     getElementById('questiontext').innerHTML = escapeHtml(question.question);
     getElementById('answer_1').innerHTML = escapeHtml(question.answer_1);
     getElementById('answer_2').innerHTML = escapeHtml(question.answer_2);
     getElementById('answer_3').innerHTML = escapeHtml(question.answer_3);
     getElementById('answer_4').innerHTML = escapeHtml(question.answer_4);
 }
+
 
 /**
  * Refresh the Progress Bar
@@ -119,8 +129,10 @@ function updateProgressBar() {
     let percent = (currentQuestion + 1) / currentQuestionsLength();
     percent = Math.round(percent * 100);
     getElementById('progress-bar').innerHTML = `${percent}%`;
+    // @ts-ignore
     getElementById('progress-bar').style = `width: ${percent}%`;
 }
+
 
 /**
  * Hidden background image
@@ -132,15 +144,18 @@ function hiddenBackgroundImage() {
     }
 }
 
+
 /**
  * Hidden background image
  */
 function showBackgroundImage() {
     let sectionElement = document.querySelector('section');
     if (sectionElement) {
+        // @ts-ignore
         sectionElement.style = '';
     }
 }
+
 
 /**
  * Evaluating the answer
@@ -157,9 +172,11 @@ function answer(selection) {
     } else {
         wrongAnswer(selection, idOfRightAnswer);
     }
-    getElementById('prev-button').disabled = currentQuestion >= 1 ? false : true;
-    getElementById('next-button').disabled = false;
+    setPrevDisabledButtonState(currentQuestion >= 1 ? false : true);
+    // getElementById('prevButton').disabled = currentQuestion >= 1 ? false : true;
+    setNextDisabledButtonState(false);
 }
+
 
 /**
  * Deactivate answer fields
@@ -167,20 +184,28 @@ function answer(selection) {
  */
 function disabledAnswerTrue(selectedQuestionNumber) {
     for (let index = 1; index < 5; index++) {
-        if (index !== +selectedQuestionNumber) { 
-            getElementById(`answer_${index}`).parentNode.onclick = () => '';
+        if (index !== +selectedQuestionNumber) {
+            const parentElement = getElementById(`answer_${index}`).parentNode;
+            if (parentElement && parentElement instanceof HTMLDivElement) {
+                parentElement.onclick = () => '';
+            }
         }        
     }
 }
+
 
 /**
  * Activate answer fields
  */
 function disabledAnswerFalse() {
     for (let index = 1; index < 5; index++) {
-        getElementById(`answer_${index}`).parentNode.onclick = () => answer(`answer_${index}`);
+        const parentElement = getElementById(`answer_${index}`).parentNode;
+        if (parentElement && parentElement instanceof HTMLDivElement) {
+            parentElement.onclick = () => answer(`answer_${index}`);
+        }
     }
 }
+
 
 /**
  * Right answer
@@ -195,6 +220,7 @@ function rightAnswer(idOfRightAnswer) {
     AUDIO_SUCCESS.play();
     rightQuestions++;
 }
+
 
 /**
  * Wrong answer
@@ -211,26 +237,28 @@ function wrongAnswer(selection, idOfRightAnswer) {
     AUDIO_FAIL.play();
 }
 
+
 /**
  * Next question
  */
 function nextQuestion() {
     currentQuestion++;
-    getElementById('next-button').disabled = true;
-    getElementById('prev-button').disabled = false;
+    setPrevDisabledButtonState(false);
+    setNextDisabledButtonState(true);
     resetAnswerButtons();
     showQuestion();
 }
+
 
 /**
  * Previous question
  */
 function prevQuestion() {
-    currentQuestion--;    
+    currentQuestion--;
     if (currentQuestion >= 0) {
-        getElementById('next-button').disabled = true;
+        setNextDisabledButtonState(true);
         if (currentQuestion === 0) {
-            getElementById('prev-button').disabled = true;
+            setPrevDisabledButtonState(true);
         }
         rightQuestions--;
         resetAnswerButtons();
@@ -238,17 +266,46 @@ function prevQuestion() {
     }
 }
 
+
 /**
  * Reset answer fields
  */
 function resetAnswerButtons() {
     for (let index = 1; index < 5; index++) {
-        getElementById(`answer_${index}`).parentNode.classList.remove('bg-success-card');
-        getElementById(`answer_${index}`).parentNode.classList.remove('bg-wrong-card');
+        console.log(getElementById(`answer_${index}`).parentNode);
+        const parentElement = getElementById(`answer_${index}`).parentNode;
+        if (parentElement && parentElement instanceof HTMLDivElement) {
+            parentElement.classList.remove('bg-success-card', 'bg-wrong-card');
+        }
         getElementById(`answerLetter_${index}`).classList.remove('bg-success-letter');
         getElementById(`answerLetter_${index}`).classList.remove('bg-wrong-letter');
     }
 }
+
+
+/**
+ * Set previous button disabled to true or false
+ * @param {boolean} state 
+ */
+function setPrevDisabledButtonState(state) {
+    const prevButton = getElementById('prevButton');
+    if (prevButton instanceof HTMLButtonElement) {
+        prevButton.disabled = state;
+    }
+}
+
+
+/**
+ * Set next button disabled to true or false
+ * @param {boolean} state 
+ */
+function setNextDisabledButtonState(state) {
+    const nextButton = getElementById('nextButton');
+    if (nextButton instanceof HTMLButtonElement) {
+        nextButton.disabled = state;
+    }
+}
+
 
 /**
  * Show the end screen with the result and the option to restart
@@ -258,12 +315,13 @@ function showEndScreen() {
     const currentSection = getElementById('sectionId');
     currentSection.innerHTML = endScreenTemplate();
     getElementById('currentLanguage').innerHTML = languages[currentLanguage];
-    getElementById('rightQuestions').innerHTML = rightQuestions;
-    getElementById('totalQuestions').innerHTML = currentQuestionsLength();
+    getElementById('rightQuestions').innerHTML = rightQuestions.toString();
+    getElementById('totalQuestions').innerHTML = currentQuestionsLength().toString();
 }
 
+
 /**
- * 
+ * Replace the chars < and > with HTML entities &lt; and &gt;
  * @param {string} question 
  * @returns {string}
  */
@@ -272,6 +330,7 @@ function escapeHtml(question) {
         .replace(/</g, "&lt;")
         .replace(/>/g, "&gt;")
 }
+
 
 /**
  * Restart the Quiz App
@@ -286,6 +345,10 @@ function restartQuizApp() {
     welcome();
 }
 
+
+/**
+ * Initialisation function
+ */
 function init() {
     welcome();
 }

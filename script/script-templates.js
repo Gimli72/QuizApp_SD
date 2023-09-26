@@ -48,9 +48,9 @@ const cardTemplate = () => /*html*/ `
             </div>
         </div>
         <div class="navigation-footer d-flex flex-row justify-content-between">
-            <div><button class="btn navigation-left bg-transparent border-0 position-absolute" id="prev-button" disabled onclick="prevQuestion()">
+            <div><button class="btn navigation-left bg-transparent border-0 position-absolute" id="prevButton" disabled onclick="prevQuestion()">
                 <img src="./img/left-25.png" alt=""></button></div>
-            <div><button class="btn navigation-right bg-transparent border-0 position-absolute" id="next-button" disabled
+            <div><button class="btn navigation-right bg-transparent border-0 position-absolute" id="nextButton" disabled
                     onclick="nextQuestion()"><img src="./img/right-25.png" alt=""></button></div>
         </div>
     </div>
