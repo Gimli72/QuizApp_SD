@@ -67,9 +67,28 @@ function selectMenuPoint(language) {
  */
 function startQuiz() {
     const currentSection = getElementById('sectionId');
-    currentSection.innerHTML = cardTemplate();
+    currentSection.innerHTML = cardTemplate();    
+    pointerEventFalse();
     showQuestion();
     getElementById('all-Questions').innerHTML = currentQuestionsLength().toString();
+}
+
+
+/**
+ * Locks the selection menu for the languages
+ */
+function pointerEventFalse() {
+    const pointerEvent = getElementById('navigation').classList;
+    pointerEvent.add('pointer-none')
+}
+
+
+/**
+ * Unlocks the selection menu for the languages
+ */
+function pointerEventTrue() {
+    const pointerEvent = getElementById('navigation').classList;
+    pointerEvent.remove('pointer-none')
 }
 
 
@@ -272,7 +291,6 @@ function prevQuestion() {
  */
 function resetAnswerButtons() {
     for (let index = 1; index < 5; index++) {
-        console.log(getElementById(`answer_${index}`).parentNode);
         const parentElement = getElementById(`answer_${index}`).parentNode;
         if (parentElement && parentElement instanceof HTMLDivElement) {
             parentElement.classList.remove('bg-success-card', 'bg-wrong-card');
@@ -342,6 +360,7 @@ function restartQuizApp() {
     showBackgroundImage();
     updateProgressBar();
     currentQuestion = 0;
+    pointerEventTrue();
     welcome();
 }
 
