@@ -63,7 +63,7 @@ function startQuiz() {
     const currentSection = getElementById('sectionId');
     currentSection.innerHTML = cardTemplate();
     showQuestion();
-    getElementById('all-Questions').innerHTML = currentQuestionsLength();
+    getElementById('all-Questions').innerHTML = currentQuestionsLength() + '';
 }
 
 /**
@@ -104,7 +104,7 @@ function gameIsOver() {
 function updateToNextQuestion() {
     const currentQuestions = questions.filter(question => question.language === currentLanguage);
     let question = currentQuestions[currentQuestion];
-    getElementById('question-number').innerHTML = currentQuestion + 1;
+    getElementById('question-number').innerHTML = currentQuestion + 1 + '';
     getElementById('questiontext').innerHTML = escapeHtml(question.question);
     getElementById('answer_1').innerHTML = escapeHtml(question.answer_1);
     getElementById('answer_2').innerHTML = escapeHtml(question.answer_2);
@@ -119,6 +119,7 @@ function updateProgressBar() {
     let percent = (currentQuestion + 1) / currentQuestionsLength();
     percent = Math.round(percent * 100);
     getElementById('progress-bar').innerHTML = `${percent}%`;
+    // @ts-ignore
     getElementById('progress-bar').style = `width: ${percent}%`;
 }
 
@@ -138,6 +139,7 @@ function hiddenBackgroundImage() {
 function showBackgroundImage() {
     let sectionElement = document.querySelector('section');
     if (sectionElement) {
+        // @ts-ignore
         sectionElement.style = '';
     }
 }
@@ -157,8 +159,12 @@ function answer(selection) {
     } else {
         wrongAnswer(selection, idOfRightAnswer);
     }
-    getElementById('prev-button').disabled = currentQuestion >= 1 ? false : true;
-    getElementById('next-button').disabled = false;
+    const prevButton = getElementById('prev-button');
+    const nextButton = getElementById('next-button');
+    if (nextButton instanceof HTMLButtonElement && prevButton instanceof HTMLButtonElement) {
+        prevButton.disabled = currentQuestion >= 1 ? false : true;
+        nextButton.disabled = false;
+    }
 }
 
 /**
@@ -167,9 +173,12 @@ function answer(selection) {
  */
 function disabledAnswerTrue(selectedQuestionNumber) {
     for (let index = 1; index < 5; index++) {
-        if (index !== +selectedQuestionNumber) { 
-            getElementById(`answer_${index}`).parentNode.onclick = () => '';
-        }        
+        if (index !== +selectedQuestionNumber) {
+            const parentElement = getElementById(`answer_${index}`).parentNode;
+            if (parentElement && parentElement instanceof HTMLDivElement) {
+                parentElement.onclick = () => '';
+            }
+        }
     }
 }
 
@@ -178,7 +187,10 @@ function disabledAnswerTrue(selectedQuestionNumber) {
  */
 function disabledAnswerFalse() {
     for (let index = 1; index < 5; index++) {
-        getElementById(`answer_${index}`).parentNode.onclick = () => answer(`answer_${index}`);
+        const parentElement = getElementById(`answer_${index}`).parentNode;
+        if (parentElement && parentElement instanceof HTMLDivElement) {
+            parentElement.onclick = () => answer(`answer_${index}`);
+        }
     }
 }
 
@@ -216,8 +228,12 @@ function wrongAnswer(selection, idOfRightAnswer) {
  */
 function nextQuestion() {
     currentQuestion++;
-    getElementById('next-button').disabled = true;
-    getElementById('prev-button').disabled = false;
+    const prevButton = getElementById('prev-button');
+    const nextButton = getElementById('next-button');
+    if (nextButton instanceof HTMLButtonElement && prevButton instanceof HTMLButtonElement) {
+        prevButton.disabled = false
+        nextButton.disabled = true;
+    }
     resetAnswerButtons();
     showQuestion();
 }
@@ -226,11 +242,15 @@ function nextQuestion() {
  * Previous question
  */
 function prevQuestion() {
-    currentQuestion--;    
+    currentQuestion--;
     if (currentQuestion >= 0) {
-        getElementById('next-button').disabled = true;
-        if (currentQuestion === 0) {
-            getElementById('prev-button').disabled = true;
+        const prevButton = getElementById('prev-button');
+        const nextButton = getElementById('next-button');
+        if (nextButton instanceof HTMLButtonElement && prevButton instanceof HTMLButtonElement) {
+            nextButton.disabled = true;
+            if (currentQuestion === 0) {
+                prevButton.disabled = true;
+            }
         }
         rightQuestions--;
         resetAnswerButtons();
@@ -243,8 +263,10 @@ function prevQuestion() {
  */
 function resetAnswerButtons() {
     for (let index = 1; index < 5; index++) {
-        getElementById(`answer_${index}`).parentNode.classList.remove('bg-success-card');
-        getElementById(`answer_${index}`).parentNode.classList.remove('bg-wrong-card');
+        const parentElement = getElementById(`answer_${index}`).parentNode;
+        if (parentElement && parentElement instanceof HTMLDivElement) {
+            parentElement.classList.remove('bg-success-card', 'bg-wrong-card');
+        }
         getElementById(`answerLetter_${index}`).classList.remove('bg-success-letter');
         getElementById(`answerLetter_${index}`).classList.remove('bg-wrong-letter');
     }
@@ -258,8 +280,8 @@ function showEndScreen() {
     const currentSection = getElementById('sectionId');
     currentSection.innerHTML = endScreenTemplate();
     getElementById('currentLanguage').innerHTML = languages[currentLanguage];
-    getElementById('rightQuestions').innerHTML = rightQuestions;
-    getElementById('totalQuestions').innerHTML = currentQuestionsLength();
+    getElementById('rightQuestions').innerHTML = rightQuestions + '';
+    getElementById('totalQuestions').innerHTML = currentQuestionsLength() + '';
 }
 
 /**
