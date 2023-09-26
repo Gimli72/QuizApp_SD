@@ -252,6 +252,8 @@ function wrongAnswer(selection, idOfRightAnswer) {
     const currentSelection = getElementById(selection).parentNode;
     const currentLetter = currentSelection ? currentSelection.firstElementChild : '';
     currentLetter ? currentLetter.classList.add('bg-wrong-letter') : '';
+    // The next two lines can be deactivated if the correct number is not to be displayed
+    rightQuestions--; // Minus one right answer because rightAnswer is called
     rightAnswer(idOfRightAnswer); // Correct answer displayed
     AUDIO_FAIL.play();
 }
