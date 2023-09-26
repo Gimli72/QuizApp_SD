@@ -1,7 +1,8 @@
 @media (max-width: 576px) {
 
     article {
-        height: 80%;
+        margin-top: -80px;
+        height: 75%;
     }
 
     nav {
@@ -18,11 +19,16 @@
     }
 
     .navigation>div {
-        border-left: 7px solid var(--bg-color-nav);
+        border-left: 0 !important;
     }
 
     .navigation>div:hover {
-        border-left: 7px solid var(--bg-color-nav);
+        border-left: 0 !important;
+    }
+
+    .active {
+        text-decoration-line: underline !important;
+        text-decoration-thickness: 7px !important;
     }
 
     .welcome_text {
@@ -51,6 +57,8 @@
 
     section {
         height: 500px;
+    border-bottom-right-radius: 0 !important;
+        border-bottom-left-radius: 0 !important;
     }
 
     .navigation-right img {
@@ -60,9 +68,14 @@
     .navigation-left img {
         left: 15px;
     }
+
+                nav {
+                    border-top-right-radius: 0 !important;
+                    border-top-left-radius: 0 !important;
+                }
 }
 
-@media (max-width: 776px) {
+@media (max-width: 768px) {
     nav {
         width: auto;
         border-top-left-radius: 0;
@@ -71,5 +84,37 @@
 
     nav>img {
         margin-bottom: 20px;
+    }
+
+    section {
+        height: 100%;
+        border-bottom-right-radius: 20px;
+        border-bottom-left-radius: 20px;
+    }
+
+    .navigation>div {
+        border-left: 0 !important;
+    }
+
+    .navigation>div:hover {
+        border-left: 0 !important;
+    }
+
+    .active {
+        text-decoration-line: underline !important;
+        text-decoration-thickness: 7px !important;
+    }
+
+    .navigation-right img {
+        right: 40px;
+    }
+
+    .navigation-left img {
+        left: 15px;
+    }
+
+    nav {
+        border-top-right-radius: 20px;
+        border-top-left-radius: 20px;
     }
 }

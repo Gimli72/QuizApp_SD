@@ -85,6 +85,10 @@ nav {
     color: var(--text-color-nav);
 }
 
+.pointer-none {
+    pointer-events: none;
+}
+
 .navigation>div {
     border-left: 7px solid var(--bg-color-nav);
 }
