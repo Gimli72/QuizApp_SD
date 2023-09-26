@@ -252,7 +252,7 @@ function wrongAnswer(selection, idOfRightAnswer) {
     const currentSelection = getElementById(selection).parentNode;
     const currentLetter = currentSelection ? currentSelection.firstElementChild : '';
     currentLetter ? currentLetter.classList.add('bg-wrong-letter') : '';
-    // rightAnswer(idOfRightAnswer); // Correct answer displayed
+    rightAnswer(idOfRightAnswer); // Correct answer displayed
     AUDIO_FAIL.play();
 }
 
