@@ -23,6 +23,14 @@ body {
     --card-bg-letter-wrong: rgb(248, 24, 23);
 }
 
+.progress {
+    border-radius: 0 !important;
+}
+
+.progress-bar {
+    background-color: var(--bg-color-nav) !important;
+}
+
 .my-button {
     background-color: var(--button-color);
     color: white;
